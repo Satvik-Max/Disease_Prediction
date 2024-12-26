@@ -1,0 +1,279 @@
+{
+    "Pneumonia": {
+    "details": {
+        "description": "Pneumonia is an infection that inflames the air sacs in one or both lungs, which may fill with fluid or pus, leading to difficulty breathing.",
+        "causes": [
+            "Bacterial infections (e.g., Streptococcus pneumoniae)",
+            "Viral infections (e.g., influenza, COVID-19)",
+            "Fungal infections (more common in immunocompromised individuals)",
+            "Aspiration of foreign substances"
+        ],
+        "symptoms": [
+            "Chest pain during breathing or coughing",
+            "Shortness of breath",
+            "Fever, sweating, and chills",
+            "Fatigue and weakness",
+            "Coughing with phlegm or pus"
+        ],
+        "treatment": [
+            "Antibiotics for bacterial pneumonia",
+            "Antiviral medications for viral pneumonia",
+            "Antifungal medications for fungal pneumonia",
+            "Oxygen therapy in severe cases"
+        ]
+    },
+    "precautions": [
+        "Get vaccinated (e.g., pneumococcal and flu vaccines)",
+        "Maintain good hygiene, including regular handwashing",
+        "Avoid smoking to keep lungs healthy",
+        "Manage chronic health conditions effectively",
+        "Strengthen the immune system with a balanced diet and exercise"
+    ],
+    "medications": [
+        "Amoxicillin",
+        "Azithromycin",
+        "Levofloxacin",
+        "Ceftriaxone"
+    ]
+},
+"Flu":{
+    "details": {
+        "description": "The flu is a contagious respiratory illness caused by influenza viruses that can cause mild to severe illness, sometimes leading to hospitalization or death.",
+        "causes": [
+            "Influenza viruses",
+            "Close contact with infected individuals",
+            "Airborne droplets from coughing or sneezing"
+        ],
+        "symptoms": [
+            "Fever or chills",
+            "Cough",
+            "Sore throat",
+            "Body aches",
+            "Fatigue"
+        ],
+        "treatment": [
+            "Antiviral medications (e.g., Oseltamivir)",
+            "Rest and fluids",
+            "Over-the-counter medications to relieve symptoms"
+        ]
+    },
+    "precautions": [
+        "Get the flu vaccine annually",
+        "Wash hands frequently",
+        "Cover mouth and nose when coughing or sneezing",
+        "Avoid close contact with sick individuals"
+    ],
+    "medications": [
+        "Oseltamivir",
+        "Zanamivir"
+    ]
+},
+    "Heart Disease": {
+        "details": {
+            "description": "A general term for several types of heart conditions, including coronary artery disease, arrhythmias, and heart failure.",
+            "causes": ["High blood pressure", "Smoking", "Diabetes", "Obesity"],
+            "symptoms": ["Chest pain", "Shortness of breath", "Fatigue", "Swollen legs"],
+            "treatment": ["Lifestyle changes", "Medications", "Angioplasty or surgery"]
+        },
+        "precautions": ["Follow a heart-healthy diet", "Regular exercise", "Avoid smoking", "Monitor cholesterol levels"],
+        "medications": ["Aspirin", "Beta-blockers", "ACE inhibitors", "Statins"]
+    },
+    "Diabetes": {
+        "details": {
+            "description": "A chronic condition that affects how your body processes glucose, leading to high blood sugar levels.",
+            "causes": ["Genetic predisposition", "Obesity", "Lack of physical activity"],
+            "symptoms": ["Increased thirst", "Frequent urination", "Blurred vision", "Slow healing of wounds"],
+            "treatment": ["Insulin therapy", "Oral medications", "Healthy diet and regular exercise"]
+        },
+        "precautions": ["Maintain blood sugar levels", "Limit processed and sugary foods", "Regular physical activity"],
+        "medications": ["Metformin", "Insulin", "Sulfonylureas", "SGLT2 inhibitors"]
+    },
+    "COVID-19": {
+        "details": {
+            "description": "A respiratory illness caused by the SARS-CoV-2 virus, leading to mild to severe symptoms.",
+            "causes": ["Virus transmission through respiratory droplets"],
+            "symptoms": ["Fever", "Cough", "Fatigue", "Loss of taste or smell"],
+            "treatment": ["Supportive care", "Antiviral drugs", "Vaccination for prevention"]
+        },
+        "precautions": ["Wear masks in public", "Practice hand hygiene", "Maintain social distancing"],
+        "medications": ["Antiviral medications like Remdesivir", "Symptomatic treatment (e.g., fever reducers)"]
+    },
+    "Tuberculosis (TB)": {
+        "details": {
+            "description": "A bacterial infection caused by *Mycobacterium tuberculosis*, affecting mainly the lungs.",
+            "causes": ["Airborne transmission from infected individuals"],
+            "symptoms": ["Persistent cough", "Weight loss", "Night sweats", "Fever"],
+            "treatment": ["Antibiotic therapy (e.g., Rifampin, Isoniazid) over 6-9 months"]
+        },
+        "precautions": ["Avoid close contact with infected individuals", "Vaccination (BCG)", "Ensure proper ventilation"],
+        "medications": ["Rifampin", "Isoniazid", "Pyrazinamide", "Ethambutol"]
+    },
+    "Migraine": {
+        "details": {
+            "description": "A neurological condition characterized by severe headaches, often accompanied by nausea and sensitivity to light.",
+            "causes": ["Stress", "Hormonal changes", "Certain foods and drinks"],
+            "symptoms": ["Throbbing headache", "Nausea", "Visual disturbances (auras)"],
+            "treatment": ["Pain relief medications", "Preventive treatments like beta-blockers"]
+        },
+        "precautions": ["Avoid known triggers", "Maintain a consistent sleep schedule", "Practice stress management"],
+        "medications": ["Triptans", "NSAIDs", "Beta-blockers", "Anti-seizure drugs"]
+    },
+    "Pregnancy Complications": {
+        "details": {
+            "description": "Health issues that occur during pregnancy, affecting the mother, baby, or both.",
+            "causes": ["Pre-existing health conditions", "Infections", "Age-related factors"],
+            "symptoms": ["High blood pressure", "Excessive bleeding", "Severe abdominal pain"],
+            "treatment": ["Monitoring and medication", "Lifestyle changes", "In some cases, early delivery"]
+        },
+        "precautions": ["Regular prenatal checkups", "Balanced diet and adequate rest", "Avoid smoking and alcohol"],
+        "medications": ["As prescribed by the doctor (e.g., folic acid, iron supplements)"]
+    },
+    "Asthma": {
+        "details": {
+            "description": "A chronic respiratory condition characterized by inflammation and narrowing of the airways.",
+            "causes": ["Allergens", "Respiratory infections", "Exercise-induced triggers"],
+            "symptoms": ["Wheezing", "Shortness of breath", "Chest tightness", "Coughing"],
+            "treatment": ["Inhalers (bronchodilators)", "Corticosteroids", "Allergy medications"]
+        },
+        "precautions": ["Avoid allergens", "Use air purifiers", "Follow an asthma action plan"],
+        "medications": ["Albuterol (rescue inhaler)", "Fluticasone (preventive inhaler)", "Montelukast"]
+    },
+    "Hypertension": {
+        "details": {
+            "description": "A condition where the force of blood against artery walls is consistently too high.",
+            "causes": ["Genetic factors", "High sodium diet", "Lack of physical activity"],
+            "symptoms": ["Often asymptomatic", "Headache", "Blurred vision", "Shortness of breath"],
+            "treatment": ["Lifestyle changes", "Antihypertensive medications"]
+        },
+        "precautions": ["Reduce salt intake", "Exercise regularly", "Manage stress"],
+        "medications": ["ACE inhibitors", "Beta-blockers", "Calcium channel blockers", "Diuretics"]
+    },
+    "Piles":{
+        "details": {
+            "description": "Piles are swollen veins in the rectum or anus, causing discomfort, bleeding, and irritation.",
+            "causes": [
+                "Straining during bowel movements",
+                "Chronic constipation or diarrhea",
+                "Obesity",
+                "Pregnancy",
+                "Sitting for long periods"
+            ],
+            "symptoms": [
+                "Painful lumps near the anus",
+                "Itching or irritation around the anus",
+                "Rectal bleeding",
+                "Discomfort while sitting"
+            ],
+            "treatment": [
+                "Fiber supplements",
+                "Over-the-counter creams and ointments",
+                "Surgical procedures (e.g., hemorrhoidectomy) for severe cases"
+            ]
+        },
+        "precautions": [
+            "Avoid straining during bowel movements",
+            "Eat a high-fiber diet",
+            "Drink plenty of water",
+            "Exercise regularly"
+        ],
+        "medications": [
+            "Hydrocortisone creams",
+            "Pain relievers (e.g., ibuprofen)"
+        ]
+    }, 
+    "Dengue":{
+        "details": {
+            "description": "Dengue is a viral infection spread by mosquitoes, causing flu-like symptoms and, in severe cases, bleeding or organ damage.",
+            "causes": [
+                "Dengue virus transmitted by Aedes mosquitoes",
+                "Living in or traveling to areas with high mosquito populations"
+            ],
+            "symptoms": [
+                "High fever",
+                "Severe headache",
+                "Pain behind the eyes",
+                "Joint and muscle pain",
+                "Rash"
+            ],
+            "treatment": [
+                "Rest and hydration",
+                "Pain relievers (avoid aspirin)",
+                "In severe cases, hospitalization may be required"
+            ]
+        },
+        "precautions": [
+            "Avoid mosquito bites (use repellents, wear long sleeves)",
+            "Stay in air-conditioned rooms or sleep under nets",
+            "Remove standing water around homes"
+        ],
+        "medications": [
+            "Acetaminophen (for fever and pain relief)"
+        ]
+    },
+    "Prostate Cancer":{
+        "details": {
+            "description": "Prostate cancer is a form of cancer that occurs in the prostate, a small gland that produces semen in men.",
+            "causes": [
+                "Age (common in men over 50)",
+                "Family history of prostate cancer",
+                "Genetic mutations",
+                "African American ethnicity"
+            ],
+            "symptoms": [
+                "Difficulty urinating",
+                "Blood in urine or semen",
+                "Pain in the lower back or pelvis",
+                "Weak or interrupted urine flow"
+            ],
+            "treatment": [
+                "Surgery (prostatectomy)",
+                "Radiation therapy",
+                "Hormone therapy",
+                "Chemotherapy (for advanced stages)"
+            ]
+        },
+        "precautions": [
+            "Regular screening (e.g., PSA test)",
+            "Maintain a healthy diet",
+            "Exercise regularly"
+        ],
+        "medications": [
+            "Finasteride",
+            "Leuprolide"
+        ]
+    },
+    "Lung cancer":{
+        "details": {
+            "description": "Lung cancer is a type of cancer that begins in the lungs. It is the leading cause of cancer deaths worldwide.",
+            "causes": [
+                "Smoking (primary cause)",
+                "Exposure to secondhand smoke",
+                "Environmental pollutants",
+                "Family history of lung cancer"
+            ],
+            "symptoms": [
+                "Persistent cough",
+                "Chest pain",
+                "Shortness of breath",
+                "Unexplained weight loss",
+                "Blood in sputum"
+            ],
+            "treatment": [
+                "Surgery (if cancer is localized)",
+                "Chemotherapy",
+                "Radiation therapy",
+                "Immunotherapy (for advanced stages)"
+            ]
+        },
+        "precautions": [
+            "Avoid smoking and exposure to tobacco smoke",
+            "Wear protective gear if working in hazardous environments",
+            "Get regular check-ups if at high risk"
+        ],
+        "medications": [
+            "Cisplatin",
+            "Paclitaxel",
+            "Erlotinib"
+        ]
+    }           
+}

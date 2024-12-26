@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symptom Analysis</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .content {
+            max-width: 1200px;
+            margin: 90px auto 20px;
+            padding: 20px;
+            background-color: var(--content-bg);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            gap: 20px;
+        }
+
+        .input-section {
+            flex: 1;
+        }
+
+        .output-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #result, #desc {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: var(--select-bg);
+            border-radius: 4px;
+            display: none;
+        }
+
+        .typing-animation {
+            overflow: hidden;
+            border-right: .15em solid var(--text);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: 
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--text); }
+        }
+        :root {
+            --background: #ffffff;
+            --text: #333333;
+            --content-bg: #f9f9f9;
+            --navbar-bg: rgba(255, 255, 255, 0.8);
+            --select-bg: #ffffff;
+            --select-border: #dddddd;
+            --button-bg: #4CAF50;
+            --button-hover: #45a049;
+        }
+
+        .dark {
+            --background: #121212;
+            --text: #e0e0e0;
+            --content-bg: #1e1e1e;
+            --navbar-bg: rgba(30, 30, 30, 0.8);
+            --select-bg: #2c2c2c;
+            --select-border: #333333;
+            --button-bg: #388E3C;
+            --button-hover: #2E7D32;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: var(--background);
+            color: var(--text);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--navbar-bg);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+        .navbar h1 {
+            margin: 0;
+        }
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text);
+        }
+        .content {
+            max-width: 650px;
+            margin: 90px auto 20px;
+            padding: 20px;
+            background-color: var(--content-bg);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+        select, input[type="number"] {
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid var(--select-border);
+            border-radius: 4px;
+            background-color: var(--select-bg);
+            color: var(--text);
+        }
+        select:disabled {
+            opacity: 0.5;
+        }
+        button {
+            padding: 10px;
+            background-color: var(--button-bg);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: var(--button-hover);
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: var(--select-bg);
+            border-radius: 4px;
+            display: none;
+        }
+        footer {
+            margin-top: auto;
+            background-color: var(--content-bg);
+            text-align: center;
+            padding: 1rem;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+        }
+        #loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: var(--button-bg);
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>Symptom Analysis</h1>
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+            <i data-lucide="sun"></i>
+        </button>
+    </nav>
+
+    <div class="content">
+        <form id="symptomForm">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required min="0" max="120">
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+
+            <label for="symptom1">Symptom 1:</label>
+            <select id="symptom1" name="symptom1" required>
+                <option value="">Select Symptom 1</option>
+            </select>
+
+            <label for="symptom2">Symptom 2:</label>
+            <select id="symptom2" name="symptom2">
+                <option value="">Select Symptom </option>
+            </select>
+
+            <label for="symptom3">Symptom 3:</label>
+            <select id="symptom3" name="symptom3">
+                <option value="">Select Symptom 3</option>
+            </select>
+
+            <button type="submit">Analyze Symptoms</button>
+        </form>
+
+        <div id="loading">
+            <div class="spinner"></div>
+            <p>Analyzing symptoms...</p>
+        </div>
+
+        <div id="result"></div>
+        <div id="desc"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Symptom Analysis. All rights reserved.</p>
+    </footer>
+    <script>
+            function typeWriter(element, text, i = 0) {
+                if (i < text.length) {
+                    element.innerHTML = text.substring(0, i + 1);
+                    setTimeout(() => typeWriter(element, text, i + 1), 20);
+                } else {
+                    element.classList.remove('typing-animation');
+                }
+            }
+        
+            let disease = "Unknown";
+            const symptoms = [
+                'headache', 'fever', 'cough', 'fatigue', 'body_ache', 'sore_throat', 'nasal_congestion',
+                'shortness_of_breath', 'wheezing', 'pale_skin', 'dizziness', 'difficulty_breathing',
+                'loss_of_taste', 'chills', 'chest_pain', 'frequent_urination', 'extreme_thirst',
+                'blurry_vision', 'nausea', 'sweating', 'swelling_in_legs', 'weight_loss', 'lump_in_breast',
+                'swelling', 'pain', 'painful_urination', 'blood_in_urine', 'back_pain', 'persistent_cough',
+                'night_sweats', 'high_fever', 'pain_behind_eyes', 'joint_pain', 'rash',
+                'bleeding_during_bowel_movements', 'itching_around_anus', 'pain_during_bowel_movements',
+                'severe_headache', 'vomiting', 'sensitivity_to_light', 'abdominal_pain', 'loss_of_appetite',
+                'stomach_pain', 'heartburn', 'bloating', 'nosebleeds', 'chest_tightness', 'stiffness',
+                'loss_of_height', 'stooped_posture', 'bone_fractures', 'difficulty_falling_asleep',
+                'daytime_fatigue', 'irritability', 'mood_changes', 'sadness', 'loss_of_interest',
+                'sleep_disturbances'
+            ];
+        
+            const symptomSelects = [
+                document.getElementById('symptom1'),
+                document.getElementById('symptom2'),
+                document.getElementById('symptom3')
+            ];
+        
+            symptoms.forEach(symptom => {
+                symptomSelects.forEach(select => {
+                    const option = document.createElement('option');
+                    option.value = symptom;
+                    option.textContent = symptom.replace(/_/g, ' ');
+                    select.appendChild(option);
+                });
+            });
+        
+            async function getDesc(disease) {
+                const descDiv = document.getElementById('desc');
+                const loadingDiv = document.getElementById('loading');
+        
+                try {
+                    loadingDiv.style.display = 'block';
+                    descDiv.style.display = 'none';
+        
+                    const response = await fetch(`http://localhost:5000/disease/${disease}`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    });
+        
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+        
+                    const data = await response.json();
+                    const { details, medications, precautions } = data;
+                    const { causes, description, symptoms, treatment } = details;
+                    descDiv.innerHTML = ''; 
+                descDiv.classList.add('typing-animation'); 
+                typeWriter(descDiv, `
+                    <h2>${disease}</h2>
+                    <p><strong>Description:</strong> ${description}</p>
+                    <h3>Causes:</h3>
+                    <ul>${causes.map(cause => `<li>${cause}</li>`).join('')}</ul>
+                    <h3>Symptoms:</h3>
+                    <ul>${symptoms.map(symptom => `<li>${symptom}</li>`).join('')}</ul>
+                    <h3>Treatment:</h3>
+                    <ul>${treatment.map(item => `<li>${item}</li>`).join('')}</ul>
+                    <h3>Medications:</h3>
+                    <ul>${medications.map(med => `<li>${med}</li>`).join('')}</ul>
+                    <h3>Precautions:</h3>
+                    <ul>${precautions.map(precaution => `<li>${precaution}</li>`).join('')}</ul>
+                `);
+
+                } catch (error) {
+                    console.error('Error:', error);
+                    descDiv.innerHTML = `
+                        <h2>Error</h2>
+                        <p>An error occurred while fetching the disease details. Please try again later.</p>
+                    `;
+                } finally {
+                    loadingDiv.style.display = 'none';
+                    descDiv.style.display = 'block';
+                }
+            }
+        
+            function updateOptions() {
+                const selectedSymptoms = new Set(
+                    symptomSelects.map(select => select.value).filter(Boolean)
+                );
+        
+                symptomSelects.forEach(select => {
+                    Array.from(select.options).forEach(option => {
+                        option.disabled = selectedSymptoms.has(option.value) && option.value !== select.value;
+                    });
+                });
+            }
+        
+            symptomSelects.forEach(select => {
+                select.addEventListener('change', updateOptions);
+            });
+        
+            document.getElementById('symptomForm').addEventListener('submit', async function (e) {
+                e.preventDefault();
+        
+                const age = document.getElementById('age').value;
+                const gender = document.getElementById('gender').value;
+        
+                const selectedSymptoms = symptomSelects
+                    .map(select => select.options[select.selectedIndex]?.value)
+                    .filter(Boolean);
+        
+                if (!/^\d+$/.test(age)) {
+                    alert("Please enter a valid age.");
+                    return;
+                }
+        
+                if (!gender) {
+                    alert("Please select a gender.");
+                    return;
+                }
+        
+                if (selectedSymptoms.length < 3) {
+                    alert("Please select at least 3 symptoms.");
+                    return;
+                }
+        
+                const loadingDiv = document.getElementById('loading');
+                const resultDiv = document.getElementById('result');
+        
+                loadingDiv.style.display = 'block';
+                resultDiv.style.display = 'none';
+        
+                try {
+                    const response = await fetch('http://localhost:5000/predict', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            Age: parseInt(age),
+                            Sex: gender === 'male' ? 'Male' : 'Female',
+                            S1: selectedSymptoms[0] || '',
+                            S2: selectedSymptoms[1] || '',
+                            S3: selectedSymptoms[2] || '',
+                        }),
+                    });
+        
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+        
+                    const data = await response.json();
+                    disease = data.prediction;
+        
+                    resultDiv.innerHTML = `
+                        <h2>Analysis Result</h2>
+                        <p>Age: ${age}</p>
+                        <p>Gender: ${gender}</p>
+                        <p>Selected Symptoms: ${selectedSymptoms.join(' - ')}</p>
+                        <p>Predicted Disease: ${data.prediction || 'Unknown'}</p>
+                        <p><strong>Note:</strong> ${data.warning || ''}</p>
+                    `;
+        
+                    getDesc(data.prediction);
+                } catch (error) {
+                    console.error('Error:', error);
+                    resultDiv.innerHTML = `
+                        <h2>Error</h2>
+                        <p>An error occurred while analyzing the symptoms. Please try again later or contact support if the problem persists.</p>
+                    `;
+                } finally {
+                    loadingDiv.style.display = 'none';
+                    resultDiv.style.display = 'block';
+                }
+            });
+        
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = themeToggle.querySelector('i');
+        
+            themeToggle.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                updateThemeIcon();
+            });
+        
+            function updateThemeIcon() {
+                const isDark = document.documentElement.classList.contains('dark');
+                themeIcon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
+                if (window.lucide) {
+                    lucide.createIcons();
+                }
+            }
+        
+            // Initialize theme icon
+            updateThemeIcon();
+            
+        lucide.createIcons();
+        </script>
+        
+</body>
+</html>
+
